@@ -16,45 +16,17 @@ const argv = yargs
   .alias('help', 'h')
   .argv;
 
-/*geocode.geocodeAddress(argv.address, (errorMessage, results) => {
+geocode.geocodeAddress(argv.address, (errorMessage, results) => {
   if (errorMessage) {
     console.log(errorMessage);
   } else {
-    console.log(JSON.stringify(results, undefined, 2));
-  }
-});*/
-
-//39.9396284,-75.18663959999999
-var cordinates = {
-  lat: 39.9396284,
-  lng: -75.18663959999999
-}
-weather.getWeather(cordinates, (errorMessage, results) =>{
-  if (errorMessage) {
-    console.log(errorMessage);
-  } else {
-    console.log(results);
+    console.log(results.address);
+    weather.getWeather(results.latitude, results.longitude, (errorMessage, weatherResults) => {
+      if (errorMessage) {
+        console.log(errorMessage);
+      } else {
+        console.log(`It's currently ${weatherResults.temperature}. It feels like ${weatherResults.apparentTemperature}.`);
+      }
+    });
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
